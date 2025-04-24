@@ -2,45 +2,34 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 import pickle
-import os
 
-# Create the ai_model folder if not exists
-os.makedirs("ai_model", exist_ok=True)
-
-# Sample labeled data
+# Sample dataset
 data = {
     'description': [
-        'Pizza from Domino’s', 'Uber ride to office', 'Paid monthly rent',
-        'Groceries from Walmart', 'Electricity bill payment', 'Netflix subscription fee',
-        'Bus ticket', 'Coffee from Starbucks', 'Mobile recharge',
-        'Flight booking', 'New headphones purchase', 'Movie night with friends'
+        'Bought groceries at supermarket',
+        'Paid electricity bill',
+        'Dinner at restaurant',
+        'Monthly rent payment',
+        'Internet recharge',
+        'Gas station fuel',
+        'Movie tickets',
+        'Bus fare'
     ],
     'category': [
-        'Food', 'Transport', 'Rent',
-        'Groceries', 'Utilities', 'Entertainment',
-        'Transport', 'Food', 'Utilities',
-        'Transport', 'Shopping', 'Entertainment'
+        'Food', 'Utilities', 'Food', 'Housing', 'Utilities', 'Transport', 'Entertainment', 'Transport'
     ]
 }
 
-# Create DataFrame
-df = pd.read_csv('ai_model/expenses.csv')
-print(df.head())
+df = pd.DataFrame(data)
 
-# Step 1: Vectorize text data
+# Vectorization
 vectorizer = TfidfVectorizer()
 X = vectorizer.fit_transform(df['description'])
 
-# Step 2: Train model
-y = df['category']
+# Model training
 model = MultinomialNB()
-model.fit(X, y)
+model.fit(X, df['category'])
 
-# Step 3: Save model and vectorizer
-with open('ai_model/model.pkl', 'wb') as f:
-    pickle.dump(model, f)
-
-with open('ai_model/vectorizer.pkl', 'wb') as f:
-    pickle.dump(vectorizer, f)
-
-print("✅ AI model and vectorizer trained and saved in 'ai_model/'")
+# Save model and vectorizer
+pickle.dump(model, open('model.pkl', 'wb'))
+pickle.dump(vectorizer, open('vectorizer.pkl', 'wb'))
