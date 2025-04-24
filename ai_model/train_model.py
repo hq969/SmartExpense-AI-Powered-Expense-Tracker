@@ -24,7 +24,8 @@ data = {
 }
 
 # Create DataFrame
-df = pd.DataFrame(data)
+df = pd.read_csv('ai_model/expenses.csv')
+print(df.head())
 
 # Step 1: Vectorize text data
 vectorizer = TfidfVectorizer()
