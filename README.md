@@ -33,31 +33,26 @@ SmartExpense is an intelligent expense tracker powered by machine learning. It c
 
 ## 📂 Project Structure
 
-SmartExpense-AI/ 
+```
 
-│ ├── app.py # Flask app logic 
+SmartExpense-AI/
+├── app.py                   # Flask backend to run the web application
+├── requirements.txt         # Python dependencies
+├── README.md                # Project overview and setup instructions
 
-├── ai_model/ │ 
+├── ai_model/                # AI model components
+│   ├── train_model.py       # Script to train and save the ML classifier
+│   ├── model.pkl            # Trained ML model (e.g., logistic regression)
+│   └── vectorizer.pkl       # Saved TF-IDF vectorizer for text preprocessing
 
-├── train_model.py # Trains the ML model │ 
+├── templates/               # HTML templates for rendering UI
+│   └── index.html           # Main web interface
 
-├── model.pkl # Saved classifier model │ 
-
-└── vectorizer.pkl # Saved TF-IDF vectorizer 
-
-├── templates/ │ 
-
-└── index.html # Frontend HTML 
-
-├── static/ │ 
-
-└── style.css # CSS styling 
-
-├── requirements.txt # Python dependencies 
-
-└── README.md # Project overview
+├── static/                  # Static assets (CSS, JS, images)
+│   └── style.css            # Styling for the web interface
 
 
+```
 
 
 ---
@@ -74,7 +69,7 @@ python ai_model/train_model.py
 python app.py
 
 Open your browser and go to http://localhost:5000
-
+```
 
 📈 Sample Usage
 POST Form:
